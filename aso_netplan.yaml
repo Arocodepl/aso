@@ -1,6 +1,7 @@
 #zadanie aso Pozdrawiamy panie Arku:) Arkadiusz Kacper 2tei
-#versionn: public 0.2
-#news: none
+#versionn: public test 0.3
+#news: Improved optimisation
+
 
 network:
   ethernets:
@@ -12,4 +13,4 @@ network:
           via: {default gateway}
       nameservers:
        addresses: [NAMESERVER_1, NAMESERVER_2]
-    Version: 2
+    version: 2
