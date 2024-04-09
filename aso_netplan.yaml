@@ -1,1 +1,15 @@
-#zadanie aso
+#zadanie aso Pozdrawiamy panie Arku:) Arkadiusz Kacper 2tei
+#versionn: public 0.2
+#news: none
+
+network:
+  ethernets:
+    enp0s3:
+      dhcp4: True/False
+      addresses: [IP_ADDRESS/NETMASK]
+      routes:
+        - to: default
+          via: {default gateway}
+      nameservers:
+       addresses: [NAMESERVER_1, NAMESERVER_2]
+    Version: 2
