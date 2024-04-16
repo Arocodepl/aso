@@ -1,16 +1,51 @@
+#!/bin/bash
+
 #zadanie aso Pozdrawiamy panie Arku:) Arkadiusz Kacper 2tei
-#versionn: public test 0.3
-#news: Improved optimisation
+#versionn: 0.9
+#netplan bedzie znajdował sie w pliku "wynikNetlan"
 
 
-network:
+echo "Cześć, zadam ci kilka pytań dotyczących konfiguracji twojego netplanu"
+echo "czy chcesz włączyć dhcp4? (yes/no)"
+read dhcp4
+echo "teraz określ adres IP i maskę, które mają być uwzględnione w adresach. Chesz aby twój adres ip uzupełnił sie automatycznie (y/n)"
+read n
+if [ $n = "n" ]
+then
+echo nie uzupełniono ip automatycznie uzupełnij go samodzielnie
+read ipadress
+else 
+echo zczytałem adres 
+ipadress=`ip -br a | grep UP | awk '{print $3}'`
+fi
+
+#read addresses
+echo "określ bramę domyślną. Chcesz aby brama uzupełniła sie automatycznie> (y/n)"
+read n
+if [ $n = "n" ]
+then
+echo nie uzupełniono ip automatycznie uzupełnij samodzielnie
+read gateway
+else 
+echo zczytałem bramę
+gateway=`ip r | grep defa | awk '{print $3}'`
+fi
+
+#read gateway
+echo "Teraz wprowadź DNS"
+read dns1
+
+
+
+
+echo "network:
   ethernets:
     enp0s3:
-      dhcp4: True/False
-      addresses: [IP_ADDRESS/NETMASK]
+      dhcp4: $dhcp4
+      addresses: [$ipadress]
       routes:
         - to: default
-          via: {default gateway}
+          via: $gateway
       nameservers:
-       addresses: [NAMESERVER_1, NAMESERVER_2]
-    version: 2
+       addresses: [$dns1]
+    version: 2" > wynikNetlan
