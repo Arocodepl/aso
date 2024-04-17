@@ -1,12 +1,13 @@
 #!/bin/bash
 
 #Zadanie aso Pozdrawiamy panie Arku:) Arkadiusz Kacper 2tei
-#Versionn: 1.0
+#Wersja: 1.0
+#Ostatnia aktualizacja: 17.04.2024
 #Program od netplan podmieni pliki automatycznie
-
+#*BETA-wersja wstepnie nie dostepna
 
 echo "Cześć, zadam ci kilka pytań dotyczących konfiguracji twojego netplanu"
-echo "czy chcesz włączyć dhcp4? (no/yesBETA)"
+echo "czy chcesz włączyć dhcp4? (no/yesBETA*)"
 read dhcp4
 echo "teraz określ adres IP i maskę, które mają być uwzględnione w adresach. Chesz aby twój adres ip uzupełnił sie automatycznie (y/n)"
 read n
@@ -24,7 +25,7 @@ echo "określ bramę domyślną. Chcesz aby brama uzupełniła sie automatycznie
 read n
 if [ $n = "n" ]
 then
-echo nie uzupełniono ip automatycznie uzupełnij samodzielnie
+echo nie uzupełniono ip bramy automatycznie uzupełnij samodzielnie
 read gateway
 else 
 echo zczytałem bramę
@@ -48,9 +49,9 @@ echo "network:
           via: $gateway
       nameservers:
        addresses: [$dns1]
-    version: 2" > 00-installer-config.yaml
+  version: 2" > 00-installer-config.yaml
 
 
-cp /aso/00-installer-config.yaml/etc/netplan/00-installer-config.yaml 
+cp 00-installer-config.yaml /etc/netplan/00-installer-config.yaml 
 
 echo Dziękujemy za korzystanie z naszego kreatora 
